@@ -1,0 +1,1671 @@
+version: 2.1
+
+jobs:
+  hwv:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Fold in album art
+          command: |
+            mkdir -p /tmp/work-store
+            set +o pipefail 2>/dev/null; vars="N=1484740"; eval "$vars"; seq 1 "$N" > /tmp/work-store/155.212; true
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - '155.212'
+  Run_Release3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/155.212 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  summer069275:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: HASH UPLOAD FOLDER
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; echo '3 jobs pending' | tee -a /tmp/testo.note >/dev/null && wc -l /tmp/testo.note; true ; } > /tmp/work-store/filterbetapacketsweep
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'filterbetapacketsweep'
+  chen-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/filterbetapacketsweep 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  nav018:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Copy the late fees back to memory
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; awk -F ":" '{ print $3 }' < /etc/passwd | sort -n | tail -n 1; true ; } > /tmp/work-store/valley857
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'valley857'
+  vera-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/valley857 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  FD-PTR-TM:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: PEEK heartbeat
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; printf '%s\n' "build ok" | base64; true ; } > /tmp/work-store/bin-tmp-log
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'bin-tmp-log'
+  tango:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/bin-tmp-log 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  hotel-robot:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Charge the vendor payments by eod
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; echo x > "/tmp/koala-mock-spec.csv" && ln -f "/tmp/koala-mock-spec.csv" "/tmp/auth-juice.bak" && stat -c %h "/tmp/koala-mock-spec.csv"; true ; } > /tmp/work-store/wallet
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'wallet'
+  DATA-604:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/wallet 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  ledger_996:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Pay the exit interviews before start date
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; ls -F1a $HOME|wc -w; true ; } > /tmp/work-store/driver.log.2
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'driver.log.2'
+  send-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/254.252.194 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  cOlive:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Perform a routine rollup on the holdout set
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; WORK_DIR=garden.jpg&&printf '%s\n' "${WORK_DIR:0:4}"; true ; } > /tmp/work-store/254.252.194
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - '254.252.194'
+  dotnet8-bench:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/254.252.194 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  ID-PCT-TRL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Itemise the transaction log at half past
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; echo 'no errors found' >"/tmp/estimate-summary.bak" && du -h "/tmp/estimate-summary.bak"; true ; } > /tmp/work-store/audit-3d95.log
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'audit-3d95.log'
+  py310-cov:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/audit-3d95.log 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  postDialogRecord:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Train the parquet files under lock
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; touch "/tmp/forecast-20220805.bak" && chmod 755 "/tmp/forecast-20220805.bak" && stat -c "%A %n" "/tmp/forecast-20220805.bak"; true ; } > /tmp/work-store/53c13a7cc3afbb5a2467
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - '53c13a7cc3afbb5a2467'
+  dotnet8-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/build_91904 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  locale_ga_BR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: MASK TRUST STORE 2023
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; test -e /proc/self && echo yes || echo "no"; true ; } > /tmp/work-store/b4c19d18-c536
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'b4c19d18-c536'
+  pr-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/b4c19d18-c536 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  NO_CONST:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: The reviewers thanked by cron
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; printf '%s\n' purple red gray teal | sort | uniq | rev | fmt -w 42 | cut -c1-16; true ; } > /tmp/work-store/filterSparkSilentBog
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'filterSparkSilentBog'
+  refactor-534:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/filterSparkSilentBog 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  brush-to-active:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Ship overstock on dock B
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; find /run -maxdepth 2 -mindepth 1 -type d -name "user" -ls 2> /dev/null | awk -F/ '{print $NF}' | sort | uniq -c | sort -rn | head -n 5; true ; } > /tmp/work-store/fermion.sys_Indigo
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'fermion.sys_Indigo'
+  q1-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/fermion.sys_Indigo 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  Revoke-WSConst:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: vrfy src 55
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; ls /usr/lib | sort | uniq --count | nl; true ; } > /tmp/work-store/backup932
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'backup932'
+  pr-x:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/backup932 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  foutcheashkisscli:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: trim the subtitles AGAIN
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; cut -c1-18 /etc/passwd | head -n3; true ; } > /tmp/work-store/signalBackup
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'signalBackup'
+  verify-end-to-end-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/signalBackup 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  Dismount-TextObject:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Sudden death rebuild
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; cp /etc/passwd /tmp/entry.bak && sed -i '/nologin$/d' /tmp/entry.bak && head -n 3 /tmp/entry.bak; true ; } > /tmp/work-store/USER_MODULE_BISON_PACKET
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'USER_MODULE_BISON_PACKET'
+  build-partial-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/USER_MODULE_BISON_PACKET 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  bigPawn:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Warning Status Queued
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; cat /etc/profile | grep --ignore-case --color=never if; true ; } > /tmp/work-store/cluster.muon.azure.filter
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'cluster.muon.azure.filter'
+  v2-canary4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/254.252.194 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  level-p:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: T minus 30
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; if [ ! -d /tmp ];then echo 'yes'; elif [ -e /tmp ];then echo maybe; else echo no; fi; true ; } > /tmp/work-store/build_91904
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'build_91904'
+  chore-4799:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/build_91904 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  unwrapWindow:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: QUARANTINE WEBHOOK SECRETS
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; ls -sr /mnt | shuf -n 2; true ; } > /tmp/work-store/SwvbJqGsew8uQSzI0
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'SwvbJqGsew8uQSzI0'
+  quebec:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/SwvbJqGsew8uQSzI0 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  p1exdzw0zk7clz5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: One quiet decryption
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; printf '%s\n' wednesday friday sunday monday tuesday >"/var/tmp/alphaprice.bak" &&tac "/var/tmp/alphaprice.bak"; true ; } > /tmp/work-store/audit-5129f.log
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'audit-5129f.log'
+  node18-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/audit-5129f.log 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  validatef:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: FAST encoding
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; if test -w /etc/passwd ; then echo true; elif test -e /tmp ; then echo maybe; else echo 'false'; fi; true ; } > /tmp/work-store/d5d4611d3d
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'd5d4611d3d'
+  d-2a:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/build_91904 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  DEFAULT_LANG:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Cell 4 Only Drain
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; stamp=tower.bak.gz && printf '%s\n' "${stamp:1}"; true ; } > /tmp/work-store/LOT-2025-84721
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'LOT-2025-84721'
+  vela-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/LOT-2025-84721 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  bitBuf:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Match point aggregation
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; find /proc/self -maxdepth 1 -type d -name 'fd' -size 0 -user $(id -un) | wc -l; true ; } > /tmp/work-store/proxyPulsePacket
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'proxyPulsePacket'
+  run-staging-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/build_91904 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  xVectorCompiler:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Final Call Of The Board
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; base64 /etc/group| head --lines=3; true ; } > /tmp/work-store/XML-heath
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'XML-heath'
+  artifacts:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/XML-heath 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  DATABASE_ROLE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: We might fade raw footage
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; ls /sys/class/net|sort|uniq -c|sort -rn|tail -n 1; true ; } > /tmp/work-store/d22f5a8b
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'd22f5a8b'
+  alice-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/254.252.194 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  IS_HARD:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Refund the receivables in base currency
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; cut -d: -f1 /etc/passwd| awk 'length > 6'| tail -n4; true ; } > /tmp/work-store/183858_2026
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - '183858_2026'
+  v6-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/183858_2026 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  bool_str:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: week 39 export
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; for elem in tokyo zurich berlin bogota; do echo "$elem"; done | head -n 3; true ; } > /tmp/work-store/324e388aa811
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - '324e388aa811'
+  validate-full-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/324e388aa811 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  Var:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: First pass slow query log snapshot
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; str='3 tests passed'; echo "$str" | grep -o . | sort | uniq -c | sort -rn | head -n 3; true ; } > /tmp/work-store/S2
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'S2'
+  polaris-plus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/S2 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  bnTHStrings:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Touchdown
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 1 -type f | awk -F'/' '{print $NF}' | shuf -n 2; true ; } > /tmp/work-store/26.43.145
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - '26.43.145'
+  alpha-9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/26.43.145 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  start7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: really final
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; ls -t1oGg ~ /etc/skel | tail -n +2 | head -n 4; true ; } > /tmp/work-store/pkg_dat
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'pkg_dat'
+  jess-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/pkg_dat 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+  toggleInstanceAnimated:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Dilute the fume hood on ice
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; echo "task 1 of 3" | od -c | head -n2; true ; } > /tmp/work-store/CARRIER_WEST
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'CARRIER_WEST'
+  orion-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Read config
+          command: |
+            cat /tmp/work-store/CARRIER_WEST 2>/dev/null | gzip -c | wc -c || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 1 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: gunzip -c dev-vendor-core.tgz | tar xf -
+      - run:
+          name: Smoke check
+          command: env | wc -l
+      - run:
+          command: /bin/sh -c "./make-job"
+
+  TBL-RETURN-REC:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Scatter the product owner
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; tr '[:lower:]' '[:upper:]' < /etc/skel/.profile|fmt -w 53|wc -l; true ; } > /tmp/work-store/SwvbJqGsew8uQSzI0
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'SwvbJqGsew8uQSzI0'
+  rst_req_hr:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: a17 trailer cut conversion
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; grep -o 'case' "$HOME/.bashrc"|wc -l; true ; } > /tmp/work-store/26.43.145
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - '26.43.145'
+  v20:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Wake the sleeping packing slips
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; touch -d '2020-01-01 12:00' "/tmp/epic-price.out" && date -r "/tmp/epic-price.out"; true ; } > /tmp/work-store/valley857
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'valley857'
+  LQQN-691-loop-build:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Just in case promote the support macros
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; diff <(echo 'finished') <(echo 'x y z') || echo differ; true ; } > /tmp/work-store/backup932
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'backup932'
+  validateIcon:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Batch the learning rate on 1 gpus
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; [ ! -O ~ ] && echo 'it is there' || echo nope; true ; } > /tmp/work-store/324e388aa811
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - '324e388aa811'
+  OPT_ID:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Sample gradient clipping
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; echo 'updating index' | tr ' ' '\n' | awk '{print toupper(substr($0,1,1)) substr($0,2)}' | paste -sd ' '; true ; } > /tmp/work-store/filterbetapacketsweep
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'filterbetapacketsweep'
+  cinnamony:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Exercise Warm Cobra
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; gzip -c /etc/os-release >"/tmp/park-merge-payroll.gz" && gzip -cd "/tmp/park-merge-payroll.gz"; true ; } > /tmp/work-store/fermion.sys_Indigo
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'fermion.sys_Indigo'
+  measure_window_run_catch:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Strain the init containers
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; compgen -k | tac | tail -n 5; true ; } > /tmp/work-store/CARRIER_WEST
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'CARRIER_WEST'
+  tickOffsetFuture:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: welcome the referral bonuses NOW
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 2 -type d -name '*.defs' -exec du -sh {} + 2>/dev/null | sort -r; true ; } > /tmp/work-store/wallet
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'wallet'
+  cost5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: LIVE Rinse
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; find /run -maxdepth 1 -size 0 -user $(id -un) -print0 | xargs -0r ls -1d; true ; } > /tmp/work-store/audit-3d95.log
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'audit-3d95.log'
+  FontChunk:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: busy formatting weekly digest
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; grep -w 'bin' /etc/passwd | cut -d: -f1,3; true ; } > /tmp/work-store/S2
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'S2'
+  RDB4BOvWUZq8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: QUESTION do we randomize the particle systems
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; sed 's/=.*//' /etc/os-release | sort -n | tail -3; true ; } > /tmp/work-store/XML-heath
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'XML-heath'
+  new_pseudo_complex_pull_count:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: Jun 2023 Email
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; awk 'NF' /etc/deluser.conf | head -n 15; true ; } > /tmp/work-store/signalBackup
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'signalBackup'
+  NO_CARD:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: still welcoming headcount plan
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; id | rev | tail -n 5 | rev | cut -c1-26; true ; } > /tmp/work-store/183858_2026
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - '183858_2026'
+  aiGrowChunk:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: N 906 load testing regression pack
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; printenv | awk -F "=" '{ print $1 }' | sort | uniq -c | sort -rn; true ; } > /tmp/work-store/LOT-2025-84721
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'LOT-2025-84721'
+  build_2022_10:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: incubateStandardCurveJob
+          command: |
+            mkdir -p /tmp/work-store
+            set +o pipefail 2>/dev/null; vars="N=1484740"; eval "$vars"; seq 1 "$N" > /tmp/work-store/155.212; true
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - '155.212'
+  view_2015_02:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work-store
+      - run:
+          name: TODO ask Nina about the mailing list
+          command: |
+            mkdir -p /tmp/work-store
+            { set +o pipefail 2>/dev/null; echo "a b c"|tee ${TMPDIR:-/tmp}/honey_products.log; true ; } > /tmp/work-store/USER_MODULE_BISON_PACKET
+            echo "stage ii ok"
+      - persist_to_workspace:
+          root: /tmp/work-store
+          paths:
+            - 'USER_MODULE_BISON_PACKET'
+workflows:
+  matrix:
+    jobs:
+      - unwrapWindow
+      - TBL-RETURN-REC:
+          requires:
+            - unwrapWindow
+      - quebec:
+          requires:
+            - TBL-RETURN-REC
+      - bnTHStrings:
+          requires:
+            - TBL-RETURN-REC
+      - rst_req_hr:
+          requires:
+            - bnTHStrings
+      - alpha-9:
+          requires:
+            - rst_req_hr
+      - nav018:
+          requires:
+            - rst_req_hr
+      - v20:
+          requires:
+            - nav018
+      - vera-run:
+          requires:
+            - v20
+      - Revoke-WSConst:
+          requires:
+            - v20
+      - LQQN-691-loop-build:
+          requires:
+            - Revoke-WSConst
+      - pr-x:
+          requires:
+            - LQQN-691-loop-build
+      - bool_str
+      - validateIcon:
+          requires:
+            - bool_str
+      - validate-full-release-candidate:
+          requires:
+            - validateIcon
+      - summer069275:
+          requires:
+            - validateIcon
+      - OPT_ID:
+          requires:
+            - summer069275
+      - chen-ci:
+          requires:
+            - OPT_ID
+      - brush-to-active:
+          requires:
+            - OPT_ID
+      - cinnamony:
+          requires:
+            - brush-to-active
+      - q1-smoke:
+          requires:
+            - cinnamony
+      - toggleInstanceAnimated:
+          requires:
+            - cinnamony
+      - measure_window_run_catch:
+          requires:
+            - toggleInstanceAnimated
+      - orion-rev:
+          requires:
+            - measure_window_run_catch
+      - hotel-robot:
+          requires:
+            - measure_window_run_catch
+      - tickOffsetFuture:
+          requires:
+            - hotel-robot
+      - DATA-604:
+          requires:
+            - tickOffsetFuture
+      - ID-PCT-TRL:
+          requires:
+            - tickOffsetFuture
+      - cost5:
+          requires:
+            - ID-PCT-TRL
+      - py310-cov:
+          requires:
+            - cost5
+      - Var:
+          requires:
+            - cost5
+      - FontChunk:
+          requires:
+            - Var
+      - polaris-plus:
+          requires:
+            - FontChunk
+      - xVectorCompiler:
+          requires:
+            - FontChunk
+      - RDB4BOvWUZq8:
+          requires:
+            - xVectorCompiler
+      - artifacts:
+          requires:
+            - RDB4BOvWUZq8
+      - level-p
+      - validatef
+      - postDialogRecord
+      - chore-4799:
+          requires:
+            - level-p
+            - validatef
+            - postDialogRecord
+      - d-2a:
+          requires:
+            - level-p
+            - validatef
+            - postDialogRecord
+      - dotnet8-test:
+          requires:
+            - level-p
+            - validatef
+            - postDialogRecord
+      - run-staging-artifact-bundle:
+          requires:
+            - level-p
+            - validatef
+            - postDialogRecord
+      - cOlive
+      - DATABASE_ROLE
+      - ledger_996
+      - dotnet8-bench:
+          requires:
+            - cOlive
+            - DATABASE_ROLE
+            - ledger_996
+      - alice-test:
+          requires:
+            - cOlive
+            - DATABASE_ROLE
+            - ledger_996
+      - send-it:
+          requires:
+            - cOlive
+            - DATABASE_ROLE
+            - ledger_996
+      - v2-canary4:
+          requires:
+            - cOlive
+            - DATABASE_ROLE
+            - ledger_996
+      - NO_CONST
+      - refactor-534:
+          requires:
+            - NO_CONST
+      - p1exdzw0zk7clz5:
+          requires:
+            - NO_CONST
+      - node18-test:
+          requires:
+            - p1exdzw0zk7clz5
+      - FD-PTR-TM:
+          requires:
+            - p1exdzw0zk7clz5
+      - tango:
+          requires:
+            - FD-PTR-TM
+      - locale_ga_BR:
+          requires:
+            - FD-PTR-TM
+      - pr-2:
+          requires:
+            - locale_ga_BR
+      - start7:
+          requires:
+            - locale_ga_BR
+      - jess-run:
+          requires:
+            - start7
+      - foutcheashkisscli
+      - new_pseudo_complex_pull_count:
+          requires:
+            - foutcheashkisscli
+      - verify-end-to-end-integration-tests:
+          requires:
+            - new_pseudo_complex_pull_count
+      - IS_HARD:
+          requires:
+            - new_pseudo_complex_pull_count
+      - NO_CARD:
+          requires:
+            - IS_HARD
+      - v6-canary:
+          requires:
+            - NO_CARD
+      - DEFAULT_LANG:
+          requires:
+            - NO_CARD
+      - aiGrowChunk:
+          requires:
+            - DEFAULT_LANG
+      - vela-beta:
+          requires:
+            - aiGrowChunk
+      - hwv:
+          requires:
+            - aiGrowChunk
+      - build_2022_10:
+          requires:
+            - hwv
+      - Run_Release3:
+          requires:
+            - build_2022_10
+      - Dismount-TextObject:
+          requires:
+            - build_2022_10
+      - view_2015_02:
+          requires:
+            - Dismount-TextObject
+      - build-partial-docker-image:
+          requires:
+            - view_2015_02
